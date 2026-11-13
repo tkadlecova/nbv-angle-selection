@@ -1,0 +1,8 @@
+numpy
+scipy
+h5py
+torch
+astra-toolbox
+scikit-image
+matplotlib
+tqdm
