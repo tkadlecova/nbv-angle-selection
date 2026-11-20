@@ -172,7 +172,8 @@ def main(a):
                 g_exact.append(abs(gs - best) < 1e-9)
                 viol.append(submodularity_check(D, sc, w, a.submod_trials, rng))
             effs = {m: np.array(v) for m, v in effs.items()}
-            bf = max(FIXED, key=lambda k: effs[k].mean())
+            bf = (max(FIXED, key=lambda k: effs[k].mean()) if a.ref == "best"
+                  else a.ref)
             row = f"  {w:>8.2f}  "
             for m in cols:
                 row += f"{effs[m].mean()*100:>15.1f}%"
@@ -201,6 +202,10 @@ if __name__ == "__main__":
     p.add_argument("--svr", nargs="*", default=[])
     p.add_argument("--weights", nargs="+", type=float,
                    default=[1.0, 0.7, 0.5, 0.0])
+    p.add_argument("--ref", default="+45/90/135",
+                   choices=list(FIXED) + ["best"],
+                   help="fixed reference for the paired test (paper: +45/90/135, "
+                        "designated in Section 5.3); 'best' = best fixed at each weight")
     p.add_argument("--submod-trials", type=int, default=40,
                    help="number of (A, B, θ) triples per object tested for submodularity")
     main(p.parse_args())
