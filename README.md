@@ -11,7 +11,7 @@ in 2-D parallel-beam geometry with ASTRA.
 **Naming.** The method is the *Set Visibility Ranker (SVR)*; the per-defect,
 per-angle criterion is the *visibility V*. In the code the network class is
 `SetVisibilityRanker`, the training script `core/train_svr.py`, and the
-visibility matrix of each object is stored in the HDF5 files under the key `D`.
+visibility matrix of each object is stored in the HDF5 files under the key `D`. Naming note: the method is called VSR (Visibility Set Ranker) in the paper; in the code it appears as SVR (train_svr.py, SetVisibilityRanker, svr_ens*.pt).
 
 ## Layout
 
